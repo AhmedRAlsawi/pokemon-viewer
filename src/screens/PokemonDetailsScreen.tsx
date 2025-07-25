@@ -1,10 +1,6 @@
 
-const PokemonDetailsScreen: React.FC = () => {
-  return (
-    <div>
-      PokemonDetailsScreen
-    </div>
-  );
-};
+const PokemonDetailsScreen: React.FC = () => <div>
+  PokemonDetailsScreen
+</div>;
 
 export default PokemonDetailsScreen;
