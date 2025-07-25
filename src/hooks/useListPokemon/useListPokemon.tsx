@@ -6,6 +6,7 @@ import { extractPokemonIdFromURL } from '../../utils';
 const useListPokemon = ({ limit, offset }: ListPokemonParams) => useQuery<PokemonListResponse, Error, PokemonWithImage[]>({
   queryKey: ['pokemonList', limit, offset],
   queryFn: () => getPokemonList({ limit, offset }),
+  staleTime: 60 * 1000,
   select: (data) => {
     return data.results.map((pokemon) => {
       const pokemonId = extractPokemonIdFromURL(pokemon.url);

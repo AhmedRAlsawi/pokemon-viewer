@@ -1,9 +1,9 @@
-interface APokemonInList {
+export interface APokemonInList {
   name: string;
   url: string;
 }
 
-interface PokemonWithImage extends APokemonInList {
+export interface PokemonWithImage extends APokemonInList {
   images: {
     pngImage: string;
     svgImage: string;
@@ -12,14 +12,14 @@ interface PokemonWithImage extends APokemonInList {
   id: string;
 }
 
-interface PokemonListResponse {
+export interface PokemonListResponse {
   count: number;
   next: string | null;
   previous: string | null;
   results: APokemonInList[];
 }
 
-interface PokemonDetails {
+export interface PokemonDetailsResponse {
   name: string;
   order: number;
   weight: number;
@@ -288,16 +288,12 @@ interface PokemonDetails {
     };
   }>;
 }
+export interface PokemonDetailsResponseWithHQImage
+  extends PokemonDetailsResponse {
+  pokemoneImage: string;
+}
 
-interface ListPokemonParams {
+export interface ListPokemonParams {
   limit: number;
   offset: number;
 }
-
-export {
-  APokemonInList,
-  PokemonListResponse,
-  PokemonDetails,
-  ListPokemonParams,
-  PokemonWithImage,
-};

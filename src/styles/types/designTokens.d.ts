@@ -4,6 +4,7 @@ export interface AppDivProps {
   $customizeddir?: 'row' | 'column';
   $customizedgap?: keyof DefaultTheme['spacing'];
   $customizedverticalmargin?: keyof DefaultTheme['spacing'];
+  $cusomizedflex?: number | null;
 }
 
 export interface AppButtonProps {

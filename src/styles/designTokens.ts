@@ -19,6 +19,7 @@ const AppText = styled.p`
 
 const AppDiv = styled.div<AppDivProps>`
   display: flex;
+  flex: ${({ $cusomizedflex = null }) => $cusomizedflex};
   flex-wrap: wrap;
   flex-direction: ${({ $customizeddir = 'row' }) => $customizeddir};
   justify-content: center;

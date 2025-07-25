@@ -15,6 +15,7 @@ export const CardWrapper = styled.div`
   box-shadow: ${({ theme }) => theme.shadows.card};
   text-align: center;
   transition: transform 0.2s ease-in-out;
+  cursor: pointer;
 
   &:hover {
     box-shadow: ${({ theme }) => theme.shadows.hover};
@@ -37,8 +38,8 @@ export const PokemonImage = styled.img<PokemonImageProps>`
   width: 100%;
   height: 100%;
   object-fit: ${({ $isHovered }) => ($isHovered ? 'none' : 'contain')};
-  transform: ${({ $isHovered }) => ($isHovered ? 'scale(0.9)' : 'scale(1)')};
-  transition: transform 0.4s ease-out;
+  transform: ${({ $isHovered }) => ($isHovered ? 'scale(1.3)' : 'scale(1)')};
+  transition: transform 0.3s ease-in, object-fit 0.3s ease-in;
 `;
 
 export const PokemonOrder = styled.div`
