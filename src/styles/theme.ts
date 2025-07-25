@@ -20,6 +20,16 @@ export const theme = {
     xl: '1.5rem',
     xxl: '2rem',
   },
+  sizes: {
+    xs: '50px',
+    sm: '100px',
+    base: '150px',
+    md: '200px',
+    lg: '300px',
+    xl: '400px',
+    full: '100%',
+    screen: '100vw',
+  },
   spacing: {
     xs: '4px',
     sm: '8px',

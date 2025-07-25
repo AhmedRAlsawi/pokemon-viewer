@@ -11,7 +11,6 @@ export const GlobalStyles = createGlobalStyle`
     font-family: ${({ theme }) => theme.fonts.base};
     background-color: ${({ theme }) => theme.colors.background};
     color: ${({ theme }) => theme.colors.text};
-    // line-height: 1.6;
   }
 
   a {
@@ -20,7 +19,7 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   h1, h2, h3 {
-    margin: 0 0 ${({ theme }) => theme.spacing.sm};
+    margin: 0 0 0;
   }
 
   img {

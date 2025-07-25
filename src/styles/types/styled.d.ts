@@ -23,6 +23,16 @@ declare module 'styled-components' {
       xl: string;
       xxl: string;
     };
+    sizes: {
+      xs: string;
+      sm: string;
+      base: string;
+      md: string;
+      lg: string;
+      xl: string;
+      full: string;
+      screen: string;
+    };
     spacing: {
       xs: string;
       sm: string;
