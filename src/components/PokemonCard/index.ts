@@ -1,2 +1,1 @@
-export * from './LoadingComp';
 export * from './PokemonCard';
