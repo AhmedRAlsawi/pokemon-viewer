@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const CardWrapper = styled.div`
+  width: ${({ theme }) => theme.sizes.lg};
   display: flex;
   flex-direction: column;
   align-items: center;

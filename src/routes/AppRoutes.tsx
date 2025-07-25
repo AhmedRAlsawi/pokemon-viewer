@@ -1,8 +1,8 @@
 import { lazy, Suspense } from 'react';
 
-import ErrorScreen from '../screens/ErrorScreen';
-import { LoadingComp } from '../components';
 import { Navigate, Route, Routes } from 'react-router-dom';
+import { LoadingComp } from '../components';
+import ErrorScreen from '../screens/ErrorScreen';
 const HomePage = lazy(() => import('../screens/HomePageScreen'));
 const PokemonDetails = lazy(() => import('../screens/PokemonDetailsScreen'));
 
