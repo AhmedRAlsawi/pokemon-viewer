@@ -1,0 +1,44 @@
+export const theme = {
+  colors: {
+    primary: '#FF1C1C',
+    secondary: '#2A75BB',
+    background: '#F5F5F5',
+    cardBackground: '#FFFFFF',
+    text: '#1A1A1A',
+    textLight: '#666666',
+    border: '#E0E0E0',
+    error: '#D32F2F',
+    success: '#43A047',
+    warning: '#FFA000',
+  },
+  fontSizes: {
+    xs: '0.75rem',
+    sm: '0.875rem',
+    base: '1rem',
+    md: '1.125rem',
+    lg: '1.25rem',
+    xl: '1.5rem',
+    xxl: '2rem',
+  },
+  spacing: {
+    xs: '4px',
+    sm: '8px',
+    base: '16px',
+    md: '24px',
+    lg: '32px',
+    xl: '40px',
+  },
+  radii: {
+    sm: '4px',
+    md: '8px',
+    lg: '16px',
+    full: '9999px',
+  },
+  shadows: {
+    card: '0 2px 6px rgba(0,0,0,0.05)',
+    hover: '0 4px 12px rgba(0,0,0,0.1)',
+  },
+  fonts: {
+    base: `'Nunito', 'Segoe UI', 'Arial', sans-serif`,
+  },
+};
