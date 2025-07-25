@@ -1,12 +1,16 @@
 import { DefaultTheme } from 'styled-components';
 
 export interface AppDivProps {
-  customizedDir?: 'row' | 'column';
-  customizedGap?: keyof DefaultTheme['spacing'];
-  customizedVerticalMargin?: keyof DefaultTheme['spacing'];
+  $customizeddir?: 'row' | 'column';
+  $customizedgap?: keyof DefaultTheme['spacing'];
+  $customizedverticalmargin?: keyof DefaultTheme['spacing'];
 }
 
 export interface AppButtonProps {
-  customizedBackground?: keyof DefaultTheme['colors'];
-  customizedColor?: keyof DefaultTheme['colors'];
+  $customizedbackground?: keyof DefaultTheme['colors'];
+  $customizedcolor?: keyof DefaultTheme['colors'];
+}
+
+export interface PokemonImageProps {
+  $isHovered: boolean;
 }

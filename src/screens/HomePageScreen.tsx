@@ -1,36 +1,37 @@
 import React from 'react';
 import { electricity } from '../assets';
 import { PokemonCard } from '../components';
+import { useListPokemon } from '../hooks';
 import { AppButton, AppContainer, AppDiv, AppText } from '../styles';
-
 const HomePageScreen: React.FC = () => {
-  // TODO: Implement the HomePageScreen component logic
-  // TODO: call the Pokemon API to fetch a list of Pokemon
-  // TODO: Header text Podédex
-  // TODO: Description text: "Discover and explore Pokemon with page controls"
   // TODO: Two buttons, one for pagination view and one for grid view
-  // TODO: create a PokemonCard component to display individual Pokemon
   // TODO: pagination controls to navigate through the list of Pokemon
   // TODO: pagination controles x of y ( z pokemon shown)
+  const { data, isLoading, isError } = useListPokemon({ limit: 12, offset: 0 });
+
+  if (isLoading) return <AppContainer>
+    <AppText>Loading Pokémon list...</AppText>
+  </AppContainer>;
+  if (isError) return <AppContainer><AppText>Error loading Pokémon list</AppText></AppContainer>;
   return (
     <AppContainer>
-      <AppDiv customizedGap='md'>
+      <AppDiv $customizedgap='md'>
         <img src={electricity} alt="Pokédex" />
         <h1>Pokédex</h1>
       </AppDiv>
       <AppText>Discover and explore Pokemon with page controls</AppText>
-      <AppDiv customizedGap='md'>
+      <AppDiv $customizedgap='md'>
         <AppButton>Pagination View</AppButton>
         <AppButton>Grid View</AppButton>
       </AppDiv>
       <AppDiv
-        customizedDir='row'
-        customizedVerticalMargin='md'
+        $customizeddir='row'
+        $customizedverticalmargin='md'
       >
-        <PokemonCard />
-        <PokemonCard />
-        <PokemonCard />
-        <PokemonCard />
+        {data && data.map(({ name, url, id, images }) => (
+          <PokemonCard key={id} name={name} url={url} images={images} id={id} />
+        ))}
+
       </AppDiv>
     </AppContainer>
   );

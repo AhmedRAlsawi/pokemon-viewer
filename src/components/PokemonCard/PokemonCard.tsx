@@ -1,15 +1,31 @@
-import React from 'react';
-import { CardWrapper, PokemonImage, PokemonName, PokemonOrder } from './PokemonCardStyles';
-// import { useParams } from 'react-router-dom';
+import React, { useState } from 'react';
+import { PokemonWithImage } from '../../types';
+import { padStartFormat } from '../../utils';
+import { CardWrapper, ImageWrapper, PokemonImage, PokemonName, PokemonOrder } from './PokemonCardStyles';
 
-const PokemonCard: React.FC = () => {
-  // const { id } = useParams<{ id: string; }>();
+const PokemonCard: React.FC<PokemonWithImage> = ({ name, url, images, id }) => {
+  const formattedId = padStartFormat(id);
+  const { pngImage, gifImage } = images;
 
+  const [isHovered, setIsHovered] = useState(false);
   return (
-    <CardWrapper>
-      <PokemonImage />
-      <PokemonName>s</PokemonName>
-      <PokemonOrder>ss</PokemonOrder>
+    <CardWrapper onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}>
+      <ImageWrapper>
+        <PokemonImage
+          $isHovered={isHovered}
+          src={isHovered ? gifImage : pngImage}
+          alt={name}
+          loading="lazy"
+          onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+            if (isHovered) {
+              e.currentTarget.src = pngImage;
+            }
+          }}
+        />
+      </ImageWrapper>
+      <PokemonName>{name}</PokemonName>
+      <PokemonOrder>{formattedId}</PokemonOrder>
     </CardWrapper>
   );
 };
