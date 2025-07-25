@@ -20,21 +20,21 @@ const AppText = styled.p`
 const AppDiv = styled.div<AppDivProps>`
   display: flex;
   flex-wrap: wrap;
-  flex-direction: ${({ customizedDir = 'row' }) => customizedDir};
+  flex-direction: ${({ $customizeddir = 'row' }) => $customizeddir};
   justify-content: center;
   align-items: center;
-  gap: ${({ customizedGap = 'md' }) => theme.spacing[customizedGap]};
-  margin-bottom: ${({ customizedVerticalMargin = 'sm' }) =>
-    theme.spacing[customizedVerticalMargin]};
-  margin-top: ${({ customizedVerticalMargin = 'sm' }) =>
-    theme.spacing[customizedVerticalMargin]};
+  gap: ${({ $customizedgap = 'md' }) => theme.spacing[$customizedgap]};
+  margin-bottom: ${({ $customizedverticalmargin = 'sm' }) =>
+    theme.spacing[$customizedverticalmargin]};
+  margin-top: ${({ $customizedverticalmargin = 'sm' }) =>
+    theme.spacing[$customizedverticalmargin]};
 `;
 
 const AppButton = styled.button<AppButtonProps>`
-  background-color: ${({ customizedBackground = 'cardBackground' }) =>
-    theme.colors[customizedBackground]};
-  color: ${({ customizedColor = 'textLight' }) =>
-    theme.colors[customizedColor]};
+  background-color: ${({ $customizedbackground = 'cardBackground' }) =>
+    theme.colors[$customizedbackground]};
+  color: ${({ $customizedcolor = 'textLight' }) =>
+    theme.colors[$customizedcolor]};
   border: none;
   padding: ${({ theme }) => theme.spacing.sm} ${({ theme }) => theme.spacing.md};
   border-radius: ${({ theme }) => theme.radii.sm};

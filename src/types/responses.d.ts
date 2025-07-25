@@ -1,13 +1,22 @@
-interface APOKEMONINLIST {
+interface APokemonInList {
   name: string;
   url: string;
 }
 
-interface ListPokemonResponse {
+interface PokemonWithImage extends APokemonInList {
+  images: {
+    pngImage: string;
+    svgImage: string;
+    gifImage: string;
+  };
+  id: string;
+}
+
+interface PokemonListResponse {
   count: number;
   next: string | null;
   previous: string | null;
-  results: APOKEMONINLIST[];
+  results: APokemonInList[];
 }
 
 interface PokemonDetails {
@@ -280,4 +289,15 @@ interface PokemonDetails {
   }>;
 }
 
-export { ListPokemonResponse, PokemonDetails, APOKEMONINLIST };
+interface ListPokemonParams {
+  limit: number;
+  offset: number;
+}
+
+export {
+  APokemonInList,
+  PokemonListResponse,
+  PokemonDetails,
+  ListPokemonParams,
+  PokemonWithImage,
+};
