@@ -1,2 +1,1 @@
-export * from './ListPokemon';
 export * from './PokemonDetails';

@@ -1,8 +1,9 @@
 import React from 'react';
 import { electricity } from '../assets';
 import { PokemonCard } from '../components';
-import { useListPokemon } from '../hooks';
+import { useListPokemon } from '../hooks/useListPokemon';
 import { AppButton, AppContainer, AppDiv, AppText } from '../styles';
+
 const HomePageScreen: React.FC = () => {
   // TODO: Two buttons, one for pagination view and one for grid view
   // TODO: pagination controls to navigate through the list of Pokemon
