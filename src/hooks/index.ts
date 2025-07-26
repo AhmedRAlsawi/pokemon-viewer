@@ -1,2 +1,3 @@
-export * from './useListPokemon';
+export * from './usePaginatedListPokemon';
 export * from './usePokemonDetails';
+export * from './useInfiniteListPokemon';

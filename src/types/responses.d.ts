@@ -3,7 +3,11 @@ export interface APokemonInList {
   url: string;
 }
 
-export interface PokemonWithImage extends APokemonInList {
+export interface PokemonWithImage
+  extends Omit<APokemonInList, 'url'>,
+    AdditionalPokemonData {}
+
+export interface AdditionalPokemonData {
   images: {
     pngImage: string;
     svgImage: string;
@@ -17,6 +21,10 @@ export interface PokemonListResponse {
   next: string | null;
   previous: string | null;
   results: APokemonInList[];
+}
+export interface TransformedPokemonListResponse
+  extends Omit<PokemonListResponse, 'results'> {
+  results: PokemonWithImage[];
 }
 
 export interface PokemonDetailsResponse {
@@ -297,3 +305,5 @@ export interface ListPokemonParams {
   limit: number;
   offset: number;
 }
+
+export type ScrollingTypes = 'pagination' | 'infinite';

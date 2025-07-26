@@ -14,7 +14,6 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   a {
-    color: ${({ theme }) => theme.colors.primary};
     text-decoration: none;
   }
 
