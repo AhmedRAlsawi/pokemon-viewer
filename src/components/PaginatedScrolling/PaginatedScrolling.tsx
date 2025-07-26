@@ -1,24 +1,40 @@
 import React from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { usePaginatedListPokemon } from '../../hooks';
+import ErrorScreen from '../../screens/ErrorScreen';
 import { AppDiv } from '../../styles';
+import { LoadingComp } from '../LoadingComp';
 import { PaginationControls } from '../PaginationControls';
 import { PokemonCard } from '../PokemonCard';
-import { PaginatedScrollingProps } from './PaginatedScrollingTypes';
+import { ScrollingPropsTypes } from '../ScrollingPropsTypes';
 
-const PaginatedScrolling: React.FC<PaginatedScrollingProps> = ({
-  data,
-  handlePageClick,
-  totalPages,
-  pageForApi,
-  limit,
-  pageFromUrl,
+const PaginatedScrolling: React.FC<ScrollingPropsTypes> = ({
+  mode, limit
 }) => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const pageFromUrl = parseInt(searchParams.get('page') || '1', 10);
+  const pageForApi = Math.max(pageFromUrl - 1, 0);
+
+  const handlePageClick = (event: { selected: number; }) => {
+    setSearchParams({ page: (event.selected + 1).toString() });
+  };
+
+  const { data: paginatedQueryData, isLoading: isPaginatedQueryLoading, isError: isPaginatedQueryError } = usePaginatedListPokemon({ limit, offset: pageForApi * limit }, mode === 'pagination');
+  const totalPages = paginatedQueryData ? Math.ceil(paginatedQueryData?.count! / limit) : 0;
+
+
+
+  if (isPaginatedQueryLoading) return <LoadingComp />;
+
+  if (isPaginatedQueryError
+  ) return <ErrorScreen />;
   return (
     <>
       <AppDiv
         $customizeddir='row'
         $customizedverticalmargin='md'
       >
-        {data && data.results.map((pokemon) => (
+        {paginatedQueryData && paginatedQueryData.results.map((pokemon) => (
           <PokemonCard key={pokemon.id} {...pokemon} />
         ))}
       </AppDiv>
@@ -28,7 +44,7 @@ const PaginatedScrolling: React.FC<PaginatedScrollingProps> = ({
         pageForApi={pageForApi}
         limit={limit}
         pageFromUrl={pageFromUrl}
-        totalCount={data?.count!}
+        totalCount={paginatedQueryData?.count!}
       /></>
   );
 };

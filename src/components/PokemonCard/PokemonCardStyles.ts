@@ -39,8 +39,7 @@ export const PokemonImage = styled.img<PokemonImageProps>`
   width: 100%;
   height: 100%;
   object-fit: ${({ $isHovered }) => ($isHovered ? 'none' : 'contain')};
-  transform: ${({ $isHovered }) => ($isHovered ? 'scale(1.3)' : 'scale(1)')};
-  transition: transform 0.3s ease-in, object-fit 0.3s ease-in;
+  transition: object-fit 0.3s ease-in;
 `;
 
 export const PokemonOrder = styled.div`
