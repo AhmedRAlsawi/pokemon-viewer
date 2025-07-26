@@ -1,35 +1,42 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { getPokemonList } from '../../services';
+import {
+  PokemonListResponse,
+  TransformedPokemonListResponse
+} from '../../types';
 import { extractPokemonIdFromURL } from '../../utils';
-import { PokemonListResponse, PokemonWithImage } from '../../types';
 import { pokemonImagesObject } from '../../utils/pokemonImagesObject';
 
-const useInfiniteListPokemon = (limit: number = 20) =>
-  // to be fixed as the return transformed data is wrong
-  useInfiniteQuery<PokemonListResponse, Error, PokemonWithImage[]>({
+export const useInfiniteListPokemon = (limit = 20,
+  enabled = true) =>
+  useInfiniteQuery<PokemonListResponse, Error, TransformedPokemonListResponse>({
     queryKey: ['pokemonListInfinite'],
-    getNextPageParam: (lastPage, _, lastPageParam) => {
-      if (lastPage.next) {
-        const url = new URL(lastPage.next);
-        return Number(url.searchParams.get('offset'));
-      }
-      return undefined;
-    },
     initialPageParam: 0,
+    enabled,
     queryFn: async ({ pageParam = 0 }) => {
-      const response = await getPokemonList({ limit, offset: Number(pageParam) });
-      return response;
+      return getPokemonList({ limit, offset: Number(pageParam) });
     },
-    select: (data) =>
-      data.pages.flatMap((page) =>
+    getNextPageParam: (lastPage) => {
+      if (!lastPage.next) return undefined;
+      const nextOffset = new URL(lastPage.next).searchParams.get('offset');
+      return nextOffset ? parseInt(nextOffset) : undefined;
+    },
+    select: (data) => {
+      const allResults = data.pages.flatMap((page) =>
         page.results.map((pokemon) => {
-          const pokemonId = extractPokemonIdFromURL(pokemon.url);
+          const id = extractPokemonIdFromURL(pokemon.url);
           return {
             ...pokemon,
-            ...pokemonImagesObject(pokemon.name, pokemonId)
+            ...pokemonImagesObject(pokemon.name, id)
           };
         })
-      ),
-  });
+      );
 
-export { useInfiniteListPokemon };
+      return {
+        count: data.pages[0].count,
+        next: data.pages[data.pages.length - 1].next,
+        previous: data.pages[data.pages.length - 1].previous,
+        results: allResults,
+      };
+    },
+  });
