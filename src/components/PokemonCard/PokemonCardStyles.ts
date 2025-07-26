@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import { PokemonImageProps } from '../../styles/types';
+import { Link } from 'react-router-dom';
 
-export const CardWrapper = styled.div`
+export const CardWrapper = styled(Link)`
   width: ${({ theme }) => theme.sizes.lg};
   display: flex;
   flex-direction: column;
